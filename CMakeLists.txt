@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(oss_asset_lab_oss_labs)
+project(ras_asset_lab_oss_labs)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
@@ -34,7 +34,7 @@ if(BUILD_TESTING)
 endif()
 
 ament_environment_hooks("${CMAKE_CURRENT_SOURCE_DIR}/env-hooks/shell_hooks.sh.in")
-#ament_environment_hooks("${CMAKE_CURRENT_SOURCE_DIR}/env-hooks/shell_hooks.dsv.in")
+ament_environment_hooks("${CMAKE_CURRENT_SOURCE_DIR}/env-hooks/shell_hooks.dsv.in")
 
 
 ament_package()
