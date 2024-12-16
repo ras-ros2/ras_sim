@@ -9,6 +9,11 @@
     <plugin name='gz::sim::systems::UserCommands' filename='ignition-gazebo-user-commands-system'/>
     <plugin name='gz::sim::systems::SceneBroadcaster' filename='ignition-gazebo-scene-broadcaster-system'/>
     <plugin name='gz::sim::systems::Contact' filename='ignition-gazebo-contact-system'/>
+    <plugin
+      filename="ignition-gazebo-sensors-system"
+      name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
     <gravity>0 0 -9.8</gravity>
     <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
     <atmosphere type='adiabatic'/>
@@ -17,74 +22,6 @@
       <background>0.7 0.7 0.7 1</background>
       <shadows>true</shadows>
     </scene>
-    <model name='camera_model'>
-      <static>true</static>
-      <pose>-1.7 -3.3 1.14 0 -0 0</pose>
-      <link name='camera_link'>
-        <sensor name='camera_sensor' type='camera'>
-          <pose>0 0 0 0 -0 0</pose>
-          <topic>__default__</topic>
-          <update_rate>30</update_rate>
-          <enable_metrics>false</enable_metrics>
-          <camera name='__default__'>
-            <pose>0 0 0 0 -0 0</pose>
-            <horizontal_fov>1.0469999999999999</horizontal_fov>
-            <image>
-              <width>640</width>
-              <height>480</height>
-              <format>RGB_INT8</format>
-              <anti_aliasing>4</anti_aliasing>
-            </image>
-            <camera_info_topic>__default__</camera_info_topic>
-            <trigger_topic></trigger_topic>
-            <triggered>false</triggered>
-            <clip>
-              <near>0.10000000000000001</near>
-              <far>100</far>
-            </clip>
-            <save enabled='false'>
-              <path>__default__</path>
-            </save>
-            <visibility_mask>4294967295</visibility_mask>
-            <noise>
-              <type>none</type>
-              <mean>0</mean>
-              <stddev>0</stddev>
-            </noise>
-            <distortion>
-              <k1>0</k1>
-              <k2>0</k2>
-              <k3>0</k3>
-              <p1>0</p1>
-              <p2>0</p2>
-              <center>0.5 0.5</center>
-            </distortion>
-            <lens>
-              <type>stereographic</type>
-              <scale_to_hfov>true</scale_to_hfov>
-              <cutoff_angle>1.5708</cutoff_angle>
-              <env_texture_size>256</env_texture_size>
-            </lens>
-            <optical_frame_id></optical_frame_id>
-          </camera>
-        </sensor>
-        <pose>0 0 0 0 -0 0</pose>
-        <inertial>
-          <pose>0 0 0 0 -0 0</pose>
-          <mass>1</mass>
-          <inertia>
-            <ixx>1</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>1</iyy>
-            <iyz>0</iyz>
-            <izz>1</izz>
-          </inertia>
-        </inertial>
-        <enable_wind>false</enable_wind>
-      </link>
-      <self_collide>false</self_collide>
-    </model>
     <model name='lab'>
       <static>true</static>
       <link name='link'>
