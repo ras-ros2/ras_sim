@@ -18,6 +18,9 @@ install(DIRECTORY worlds/
 install(DIRECTORY models/
   DESTINATION share/${PROJECT_NAME}/models
 )
+install(DIRECTORY camera_bridge_ign/
+  DESTINATION share/${PROJECT_NAME}/camera_bridge_ign
+)
 
 ament_python_install_package(${PROJECT_NAME})
 
