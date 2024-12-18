@@ -51,6 +51,8 @@
   <exec_depend>diff_drive_controller</exec_depend>
   <exec_depend>tricycle_controller</exec_depend>
   <exec_depend>xacro</exec_depend>
+  <exec_depend>rclpy_message_converter</exec_depend>
+  <exec_depend>aruco_interfaces</exec_depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
