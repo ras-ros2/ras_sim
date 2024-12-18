@@ -17,6 +17,8 @@ from geometry_msgs.msg import Quaternion
 from tf_transformations import euler_from_quaternion
 from tf_transformations import quaternion_from_euler
 import tf_transformations
+from aruco_interfaces.msg import ArucoMarkers
+from geometry_msgs.msg import Pose
 
 def calculate_rectangle_area(coordinates):
 		height = ((coordinates[0] - coordinates[4])**2 + (coordinates[1] - coordinates[5])**2)**0.5
@@ -106,16 +108,19 @@ class aruco_tf(Node):
 		super().__init__('aruco_tf_publisher')
 		self.cv_image = None  
 		self.depth_image = None
+		self.aruco_markers_msg = ArucoMarkers()
 
 		self.color_cam_sub = self.create_subscription(Image, '/realsense_camera/image_raw', self.colorimagecb, 10)
 		self.depth_cam_sub = self.create_subscription(Image, '/realsense_depth_camera/depth_raw', self.depthimagecb, 10)
+		self.aruco_markers_pub = self.create_publisher(ArucoMarkers, '/aruco_markers', 10)
 
 		image_processing_rate = 3                                               
 		self.bridge = CvBridge()                                                        
 		self.tf_buffer = tf2_ros.buffer.Buffer()                                       
 		self.listener = tf2_ros.TransformListener(self.tf_buffer, self)
 		self.br = tf2_ros.TransformBroadcaster(self)   		                                 
-		self.timer = self.create_timer(image_processing_rate, self.process_image)      
+		self.timer = self.create_timer(image_processing_rate, self.process_image)
+		self.get_logger().info("Aruco tf publisher node started")   
 
 	def depthimagecb(self, data):
 
@@ -144,7 +149,10 @@ class aruco_tf(Node):
 			center_list, distance_list, angle_list, width_list, ids,tvec = detect_aruco(self.gray, self.depth_image)
 			rpy = []
 			list_rpy = []
+			self.aruco_markers_msg.marker_ids = []
+			self.aruco_markers_msg.poses = []
 			for i in range(len(ids)):
+				self.aruco_markers_msg.marker_ids.append(ids[i])
 				aruco_id = ids[i]
 				distance = distance_list[i]
 				angle_aruco = angle_list[i]
@@ -206,6 +214,17 @@ class aruco_tf(Node):
 				transform_msg.transform.rotation.w = qw
 				self.br.sendTransform(transform_msg)
 
+				pose = Pose()
+				pose.position.x = float(x_1)
+				pose.position.y = float(y_1)
+				pose.position.z = float(z_1)
+				pose.orientation.x = qx
+				pose.orientation.y = qy
+				pose.orientation.z = qz
+				pose.orientation.w = qw
+
+				self.aruco_markers_msg.poses.append(pose)
+
 				try:
 					t = self.tf_buffer.lookup_transform('link_base', transform_msg.child_frame_id, rclpy.time.Time())
 					transform_msg.header.stamp = self.get_clock().now().to_msg()
@@ -221,17 +240,18 @@ class aruco_tf(Node):
 					transform_msg.transform.rotation.w = t.transform.rotation.w
 					roll_1 , pitch_1 , yaw_1  = euler_from_quaternion([t.transform.rotation.x, t.transform.rotation.y, t.transform.rotation.z, t.transform.rotation.w])
 					print(aruco_id)
+					self.get_logger().info(f'Id is {aruco_id}')
 					self.br.sendTransform(transform_msg)
 				except Exception as e:
 					pass
+			self.aruco_markers_msg.header.stamp = self.get_clock().now().to_msg()
+			self.aruco_markers_pub.publish(self.aruco_markers_msg)
 		except Exception as e:
-			pass
+			self.get_logger().error(f'Error in processing image: {e}')
 
 
 def main():
 	rclpy.init(args=sys.argv)
-	node = rclpy.create_node('aruco_tf_process')
-	node.get_logger().info('Node created: Aruco tf process')
 	aruco_tf_class = aruco_tf()
 	rclpy.spin(aruco_tf_class)
 	aruco_tf_class.destroy_node()
