@@ -5,7 +5,7 @@ from launch_ros.actions import Node
 from ament_index_python.packages import get_package_share_directory
 from launch.actions import IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from ras_common.lab_loader import LabLoader
+from ras_common.config.loaders.lab_setup import LabSetup as LabLoader
 from ras_resource_lib.managers.asset_manager import AssetManager,AssetType
 from ras_resource_lib.types.manipulator.component import ManipulatorComponent
 from tf_transformations import euler_from_quaternion, quaternion_from_euler
