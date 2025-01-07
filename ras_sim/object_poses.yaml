@@ -1,5 +1,6 @@
 objects:
-- object_id: o4
+- aruco_id: 1
+  object_name: Beaker
   pose:
     orientation:
       qw: 0.39
@@ -10,7 +11,8 @@ objects:
       x: 1.38
       y: 8.85
       z: 3.82
-- object_id: o5
+- aruco_id: 2
+  object_name: Test Tube
   pose:
     orientation:
       qw: -0.69
@@ -21,7 +23,8 @@ objects:
       x: 9.5
       y: 1.56
       z: 4.59
-- object_id: x1
+- aruco_id: 3
+  object_name: Bunsen Burner
   pose:
     orientation:
       qw: -0.6
@@ -32,7 +35,8 @@ objects:
       x: 2.55
       y: 7.33
       z: 2.57
-- object_id: x2
+- aruco_id: 4
+  object_name: Pipette
   pose:
     orientation:
       qw: -0.24
@@ -43,7 +47,8 @@ objects:
       x: 8.56
       y: 2.58
       z: 8.53
-- object_id: x3
+- aruco_id: 5
+  object_name: Flask
   pose:
     orientation:
       qw: -0.04
@@ -54,7 +59,8 @@ objects:
       x: 2.04
       y: 6.41
       z: 6.84
-- object_id: x4
+- aruco_id: 6
+  object_name: Funnel
   pose:
     orientation:
       qw: 0.7
@@ -65,7 +71,8 @@ objects:
       x: 0.43
       y: 5.92
       z: 1.58
-- object_id: x5
+- aruco_id: 7
+  object_name: Stirring Rod
   pose:
     orientation:
       qw: -0.76
@@ -76,7 +83,8 @@ objects:
       x: 0.94
       y: 0.49
       z: 7.83
-- object_id: o3
+- aruco_id: 8
+  object_name: Graduated Cylinder
   pose:
     orientation:
       qw: 7.0
@@ -87,7 +95,8 @@ objects:
       x: 1.0
       y: 2.0
       z: 3.0
-- object_id: object_1
+- aruco_id: 9
+  object_name: Mortar and Pestle
   pose:
     orientation:
       qw: 1.0
@@ -98,7 +107,8 @@ objects:
       x: 1.0
       y: 2.0
       z: 3.0
-- object_id: object_2
+- aruco_id: 10
+  object_name: Thermometer
   pose:
     orientation:
       qw: 0.4
@@ -109,7 +119,8 @@ objects:
       x: 4.0
       y: 5.0
       z: 6.0
-- object_id: o1
+- aruco_id: 11
+  object_name: Crucible
   pose:
     orientation:
       qw: 1.0
@@ -120,7 +131,8 @@ objects:
       x: 1.0
       y: 2.0
       z: 3.0
-- object_id: o2
+- aruco_id: 12
+  object_name: Dropper
   pose:
     orientation:
       qw: 0.4
