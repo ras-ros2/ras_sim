@@ -190,24 +190,6 @@
     <model name='Table'>
       <static>true</static>
       <link name='link'>
-        <collision name='surface'>
-          <pose>0 0 1.0 0 0 0</pose>
-          <geometry>
-            <box>
-              <size>1.5 0.8 0.03</size>
-            </box>
-          </geometry>
-          <surface>
-            <friction>
-              <ode>
-                <mu>0.59999999999999998</mu>
-                <mu2>0.59999999999999998</mu2>
-              </ode>
-            </friction>
-            <bounce/>
-            <contact/>
-          </surface>
-        </collision>
         <visual name='visual1'>
           <pose>0 0 1.0 0 0 0</pose>
           <geometry>
@@ -371,7 +353,7 @@
         </inertial>
         <enable_wind>false</enable_wind>
       </link>
-      <pose>-1.25 -3.62 0.11 0 -0 0</pose>
+      <pose>-1.25 -3.62 0.10 0 -0 0</pose>
       <self_collide>false</self_collide>
     </model>
     <light name='sun' type='directional'>
@@ -380,193 +362,7 @@
       <intensity>1</intensity>
       <direction>-0.5 0.1 -0.9</direction>
       <diffuse>0.8 0.8 0.8 1</diffuse>
-      <specular>0.2 0.2 0.2 1</specular><model name='Table'>
-      <static>true</static>
-      <link name='link'>
-        <collision name='surface'>
-          <pose>0 0 1.0 0 0 0</pose>
-          <geometry>
-            <box>
-              <size>1.5 0.8 0.03</size>
-            </box>
-          </geometry>
-          <surface>
-            <friction>
-              <ode>
-                <mu>0.59999999999999998</mu>
-                <mu2>0.59999999999999998</mu2>
-              </ode>
-            </friction>
-            <bounce/>
-            <contact/>
-          </surface>
-        </collision>
-        <visual name='visual1'>
-          <pose>0 0 1.0 0 0 0</pose>
-          <geometry>
-            <box>
-              <size>1.5 0.8 0.03</size>
-            </box>
-          </geometry>
-          <material>
-            <diffuse>1 1 1 1</diffuse>
-            <script>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/Wood</name>
-            </script>
-            <pbr>
-              <metal>
-                <albedo_map>model://Table/Table_Diffuse.jpg</albedo_map>
-              </metal>
-            </pbr>
-          </material>
-        </visual>
-        <collision name='front_left_leg'>
-          <pose>0.68 0.38 0.5 0 0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.02</radius>
-              <length>1</length>
-            </cylinder>
-          </geometry>
-          <surface>
-            <friction>
-              <ode/>
-            </friction>
-            <bounce/>
-            <contact/>
-          </surface>
-        </collision>
-        <visual name='front_left_leg'>
-          <pose>0.68 0.38 0.5 0 0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.02</radius>
-              <length>1</length>
-            </cylinder>
-          </geometry>
-          <material>
-            <diffuse>0.5 0.5 0.5 1</diffuse>
-            <script>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/Grey</name>
-            </script>
-          </material>
-        </visual>
-        <collision name='front_right_leg'>
-          <pose>0.68 -0.38 0.5 0 0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.02</radius>
-              <length>1</length>
-            </cylinder>
-          </geometry>
-          <surface>
-            <friction>
-              <ode/>
-            </friction>
-            <bounce/>
-            <contact/>
-          </surface>
-        </collision>
-        <visual name='front_right_leg'>
-          <pose>0.68 -0.38 0.5 0 0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.02</radius>
-              <length>1</length>
-            </cylinder>
-          </geometry>
-          <material>
-            <diffuse>0.5 0.5 0.5 1</diffuse>
-            <script>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/Grey</name>
-            </script>
-          </material>
-        </visual>
-        <collision name='back_right_leg'>
-          <pose>-0.68 -0.38 0.5 0 0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.02</radius>
-              <length>1</length>
-            </cylinder>
-          </geometry>
-          <surface>
-            <friction>
-              <ode/>
-            </friction>
-            <bounce/>
-            <contact/>
-          </surface>
-        </collision>
-        <visual name='back_right_leg'>
-          <pose>-0.68 -0.38 0.5 0 0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.02</radius>
-              <length>1</length>
-            </cylinder>
-          </geometry>
-          <material>
-            <diffuse>0.5 0.5 0.5 1</diffuse>
-            <script>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/Grey</name>
-            </script>
-          </material>
-        </visual>
-        <collision name='back_left_leg'>
-          <pose>-0.68 0.38 0.5 0 0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.02</radius>
-              <length>1</length>
-            </cylinder>
-          </geometry>
-          <surface>
-            <friction>
-              <ode/>
-            </friction>
-            <bounce/>
-            <contact/>
-          </surface>
-        </collision>
-        <visual name='back_left_leg'>
-          <pose>-0.68 0.38 0.5 0 0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.02</radius>
-              <length>1</length>
-            </cylinder>
-          </geometry>
-          <material>
-            <diffuse>0.5 0.5 0.5 1</diffuse>
-            <script>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/Grey</name>
-            </script>
-          </material>
-        </visual>
-        <pose>0 0 0 0 -0 0</pose>
-        <inertial>
-          <pose>0 0 0 0 -0 0</pose>
-          <mass>1</mass>
-          <inertia>
-            <ixx>1</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>1</iyy>
-            <iyz>0</iyz>
-            <izz>1</izz>
-          </inertia>
-        </inertial>
-        <enable_wind>false</enable_wind>
-      </link>
-      <pose>-1.24873 -2.93352 0.105974 0 -0 0</pose>
-      <self_collide>false</self_collide>
-    </model>
+      <specular>0.2 0.2 0.2 1</specular>
       <attenuation>
         <range>1000</range>
         <linear>0.01</linear>

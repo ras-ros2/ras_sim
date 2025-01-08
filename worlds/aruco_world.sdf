@@ -173,24 +173,6 @@
     <model name='Table'>
       <static>true</static>
       <link name='link'>
-        <collision name='surface'>
-          <pose>0 0 1.0 0 0 0</pose>
-          <geometry>
-            <box>
-              <size>1.5 0.8 0.03</size>
-            </box>
-          </geometry>
-          <surface>
-            <friction>
-              <ode>
-                <mu>0.59999999999999998</mu>
-                <mu2>0.59999999999999998</mu2>
-              </ode>
-            </friction>
-            <bounce/>
-            <contact/>
-          </surface>
-        </collision>
         <visual name='visual1'>
           <pose>0 0 1.0 0 0 0</pose>
           <geometry>
