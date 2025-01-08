@@ -4,6 +4,7 @@ import rclpy
 from rclpy.node import Node
 from geometry_msgs.msg import Pose
 from std_msgs.msg import String
+from ras_interfaces.srv import ArucoPoses
 from ras_common.config.loaders.lab_setup import LabSetup as LabLoader
 import numpy as np
 from tf_transformations import euler_from_quaternion, quaternion_from_euler
@@ -12,7 +13,7 @@ import yaml
 class SpawnIgn(Node):
     def __init__(self):
         super().__init__("spawn_ign_node")
-        self.get_logger().info("IGN SPAWN NODE STARTED")
+        self.get_logger().info("IGN SPAWN MANAGER NODE STARTED")
         LabLoader.init()
         
         self.robot_pose = LabLoader.robot_pose
@@ -20,11 +21,18 @@ class SpawnIgn(Node):
         self.spawn_pose = self.create_publisher(Pose, "/spawn_model", 10)
         self.despawn_pose = self.create_publisher(String, "/despawn_model", 10)
 
+        self.create_service(ArucoPoses, "/aruco_poses", self.aruco_spawner)
+
         self.robot_rot_eulers = euler_from_quaternion((self.robot_pose.orientation.x, self.robot_pose.orientation.y, self.robot_pose.orientation.z, self.robot_pose.orientation.w))
+    
+    def aruco_spawner(self, req, resp):
+        for aruco_pose in req.poses:
+            aruco_np_pose = self.convert_pose_to_world(aruco_pose.position.x, aruco_pose.position.y, aruco_pose.position.z)
+            self.spawn_model(aruco_np_pose)
+        
+        resp.response = True
 
-        np_pose = self.convert_pose_to_world()
-
-        self.spawn_model(np_pose)
+        return resp
 
     def euler_to_matrix(self, roll, pitch, yaw):
         R_x = np.array([[1, 0, 0],
@@ -41,9 +49,9 @@ class SpawnIgn(Node):
     
         return R_z @ R_y @ R_x
     
-    def convert_pose_to_world(self):
+    def convert_pose_to_world(self, pos_x, pos_y, pos_z):
 
-        old_pos = np.array([0.2, -0.35, 0.33])
+        old_pos = np.array([pos_x, pos_y, pos_z])
         roll, pitch, yaw =  self.robot_rot_eulers[0], self.robot_rot_eulers[1], self.robot_rot_eulers[2]
         translation = np.array([self.robot_pose.position.x, self.robot_pose.position.y, self.robot_pose.position.z])
 
@@ -52,8 +60,6 @@ class SpawnIgn(Node):
         new_pos = rotation_matrix @ old_pos + translation
 
         return new_pos
-
-
 
     def spawn_model(self, np_pose):
         self.get_logger().info("Spawning Model at : " + str(np_pose))
