@@ -1,0 +1,30 @@
+Poses:
+  pose1:
+    x: 0.9
+    y: 0.0
+    z: 0.0
+    roll: 0.0
+    pitch: 0.0
+    yaw: 1.0
+  pose2:
+    x: 0.5
+    y: 0.0
+    z: 0.0
+    roll: 0.0
+    pitch: 0.0
+    yaw: 1.0
+  pose3:
+    x: 1.0
+    y: 2.0
+    z: 3.0
+    roll: 0.0
+    pitch: 0.0
+    yaw: 1.0
+targets:
+- pose1
+- grasp
+- pose2
+- 1.57
+- -1.57
+- pose3
+- release
