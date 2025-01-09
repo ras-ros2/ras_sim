@@ -49,10 +49,19 @@ def generate_launch_description():
         parameters=[moveit_config.robot_description, {"use_sim_time": True}],
     )
 
+    bridge_config = os.path.join(get_package_share_directory("ras_asset_lab_oss_labs"), "camera_bridge_ign", "config.yaml")
+    
+    ros_gz_bridge = Node(package="ros_gz_bridge", 
+            executable="parameter_bridge",
+            parameters = [
+                {'config_file': bridge_config}],
+            )
+
     return LaunchDescription(
         [
             robot_state_publisher,
             launch_world,
             gazebo_spawn_entity_node,
+            ros_gz_bridge
         ]
     )
