@@ -9,6 +9,11 @@
     <plugin name='gz::sim::systems::UserCommands' filename='ignition-gazebo-user-commands-system'/>
     <plugin name='gz::sim::systems::SceneBroadcaster' filename='ignition-gazebo-scene-broadcaster-system'/>
     <plugin name='gz::sim::systems::Contact' filename='ignition-gazebo-contact-system'/>
+    <plugin
+      filename="ignition-gazebo-sensors-system"
+      name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
     <gravity>0 0 -9.8</gravity>
     <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
     <atmosphere type='adiabatic'/>
@@ -17,28 +22,6 @@
       <background>0.7 0.7 0.7 1</background>
       <shadows>true</shadows>
     </scene>
-    <model name="camera_model">
-      <static>true</static>
-      <pose>-1.7 -3.30 1.14 0 0 0</pose> <!-- Position: x, y, z and Orientation: roll, pitch, yaw -->
-      <link name="camera_link">
-        <sensor name="camera_sensor" type="camera">
-          <pose>0 0 0 0 0 0</pose> <!-- Position and orientation relative to the link -->
-          <camera>
-            <horizontal_fov>1.047</horizontal_fov> <!-- Field of view in radians -->
-            <image>
-              <width>640</width>
-              <height>480</height>
-              <format>R8G8B8</format>
-            </image>
-            <clip>
-              <near>0.1</near>
-              <far>100</far>
-            </clip>
-          </camera>
-          <update_rate>30</update_rate> <!-- Frames per second -->
-        </sensor>
-      </link>
-    </model>
     <model name='lab'>
       <static>true</static>
       <link name='link'>
@@ -353,9 +336,29 @@
         </inertial>
         <enable_wind>false</enable_wind>
       </link>
-      <pose>-1.25 -3.62 0.10 0 -0 0</pose>
+      <pose>-1.25 -3.62 0.11 0 -0 0</pose>
       <self_collide>false</self_collide>
     </model>
+    <include>
+      <uri>model://aruco_2</uri>
+      <name>aruco_2</name>
+      <pose>-1.54509 -3.7 1.13 0 -0 0</pose>
+    </include>
+    <include>
+      <uri>model://aruco_1</uri>
+      <name>aruco_1</name>
+      <pose>-1.31 -3.7 1.13 0 -0 0</pose>
+    </include>
+    <include>
+      <uri>model://aruco_0</uri>
+      <name>aruco_0</name>
+      <pose>-1.1 -3.7 1.13 0 -0 0</pose>
+    </include>
+    <include>
+      <uri>model://aruco_3</uri>
+      <name>aruco_3</name>
+      <pose>-0.9 -3.7 1.13 0 -0 0</pose>
+    </include>
     <light name='sun' type='directional'>
       <pose>0 0 10 0 -0 0</pose>
       <cast_shadows>true</cast_shadows>
