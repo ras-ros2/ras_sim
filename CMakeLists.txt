@@ -12,11 +12,17 @@ find_package(rclcpp REQUIRED)
 find_package(rclcpp_action REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
+find_package(ament_cmake_python REQUIRED)
 
 install(
   DIRECTORY gazebo_models launch
   DESTINATION share/${PROJECT_NAME}/
 )
+
+install(DIRECTORY scripts/
+ DESTINATION lib/${PROJECT_NAME}/)
+ 
+ament_python_install_package(${PROJECT_NAME})
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
