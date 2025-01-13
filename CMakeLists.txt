@@ -13,6 +13,24 @@ find_package(rclcpp_action REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(ament_cmake_python REQUIRED)
+find_package(ras_interfaces REQUIRED)
+
+find_package(ignition-gazebo6 REQUIRED)
+find_package(ignition-plugin1 REQUIRED COMPONENTS register)
+
+add_executable(spawn_model_node src/spawn_model_node.cc)
+ament_target_dependencies(spawn_model_node rclcpp geometry_msgs std_msgs ras_interfaces)
+
+target_link_libraries(spawn_model_node 
+  ignition-plugin1::ignition-plugin1
+  ignition-gazebo6::ignition-gazebo6
+  #libstatistics_collector
+)
+
+install(TARGETS
+        spawn_model_node 
+        DESTINATION lib/${PROJECT_NAME}/
+)
 
 install(
   DIRECTORY gazebo_models launch
