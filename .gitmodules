@@ -1,6 +1,0 @@
-[submodule "ras_sim"]
-	path = ras_sim
-	url = git@github.com:ras-ros2/ras_sim.git
-[submodule "ras_asset_lab_oss_labs"]
-	path = ras_asset_lab_oss_labs
-	url = git@github.com:ras-ros2/ras_asset_lab_oss_labs.git
